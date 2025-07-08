@@ -1,0 +1,56 @@
+<%- include("partials/header") %>
+
+<div class="todo-container">
+  <% if (typeof error !== 'undefined' && error) { %>
+  <script>
+    alert("<%= error %>");
+  </script>
+  <% } %>
+
+  <form action="/add" method="POST" class="todo-form">
+    <input type="text" name="title" placeholder="Add new task">
+    <select name="priority">
+      <option value="low">Low</option>
+      <option value="medium">Medium</option>
+      <option value="high">High</option>
+    </select>
+    <button type="submit">Add</button>
+  </form>
+
+  <% if (todos.length === 0) { %>
+    <p>No tasks yet.</p>
+  <% } else { %>
+    <form action="/filter" method="POST">
+      <select name="priority" onchange="this.form.submit()">
+    <option value="all" <%= selectedPriority === "all" ? "selected" : "" %>>All</option>
+    <option value="low" <%= selectedPriority === "low" ? "selected" : "" %>>Low</option>
+    <option value="medium" <%= selectedPriority === "medium" ? "selected" : "" %>>Medium</option>
+    <option value="high" <%= selectedPriority === "high" ? "selected" : "" %>>High</option>
+  </select>
+    </form>
+
+    <ul class="todo-list">
+      <% todos.forEach(todo => { %>
+        <li>
+          <form action="/edit/<%= todo.id %>?_method=PUT" method="POST" class="edit-form">
+            <input type="hidden" name="id" value="<%= todo.id %>">
+            <input type="text" name="title" value="<%= todo.title %>">
+            <select name="priority">
+              <option <%= todo.priority === 'low' ? "selected" : "" %>>low</option>
+              <option <%= todo.priority === 'medium' ? "selected" : "" %>>medium</option>
+              <option <%= todo.priority === 'high' ? "selected" : "" %>>high</option>
+            </select>
+            <button type="submit">Update</button>
+          </form>
+
+          <form action="/delete/<%= todo.id %>?_method=DELETE" method="POST">
+            <input type="hidden" name="id" value="<%= todo.id %>">
+            <button type="submit">Delete</button>
+          </form>
+        </li>
+      <% }); %>
+    </ul>
+  <% } %>
+</div>
+
+<%- include("partials/footer") %>

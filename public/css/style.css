@@ -1,0 +1,241 @@
+/* Reset some basics */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #f0f4f8;
+  color: #333;
+  margin: 0;
+  padding: 0 1rem;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+header, footer {
+  background-color: #2c3e50;
+  color: white;
+  text-align: center;
+  padding: 1.5rem 1rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  box-shadow: 0 2px 6px rgba(44, 62, 80, 0.3);
+  user-select: none;
+}
+
+footer {
+  margin-top: auto;
+  font-size: 0.9rem;
+}
+
+.todo-container {
+  max-width: 600px;
+  margin: 2rem auto 4rem;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+}
+
+.todo-form {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+}
+
+.todo-form input[type="text"] {
+  flex: 1 1 60%;
+  padding: 0.7rem 1rem;
+  border-radius: 6px;
+  border: 2px solid #ddd;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.todo-form input[type="text"]:focus {
+  border-color: #3498db;
+  outline: none;
+}
+
+.todo-form select {
+  flex: 1 1 25%;
+  padding: 0.7rem 1rem;
+  border-radius: 6px;
+  border: 2px solid #ddd;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: border-color 0.3s ease;
+}
+
+.todo-form select:focus {
+  border-color: #3498db;
+  outline: none;
+}
+
+.todo-form button {
+  flex: 1 1 10%;
+  background-color: #3498db;
+  color: white;
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.todo-form button:hover {
+  background-color: #2980b9;
+}
+
+.todo-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.todo-list li {
+  background: #f9fafb;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.edit-form {
+  display: flex;
+  flex: 1 1 70%;
+  gap: 0.75rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.edit-form input[type="text"] {
+  flex: 1 1 60%;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  border: 2px solid #ccc;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.edit-form input[type="text"]:focus {
+  border-color: #3498db;
+  outline: none;
+}
+
+.edit-form select {
+  flex: 1 1 30%;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  border: 2px solid #ccc;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: border-color 0.3s ease;
+}
+
+.edit-form select:focus {
+  border-color: #3498db;
+  outline: none;
+}
+
+.edit-form button {
+  flex: 1 1 15%;
+  padding: 0.5rem 0.75rem;
+  background-color: #27ae60;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.edit-form button:hover {
+  background-color: #1e8449;
+}
+
+.todo-list form[action="/delete"] {
+  flex: 1 1 10%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.todo-list form[action="/delete"] button {
+  background-color: #e74c3c;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  padding: 0.5rem 0.75rem;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+.todo-list form[action="/delete"] button:hover {
+  background-color: #c0392b;
+}
+
+.todo-container p {
+  text-align: center;
+  color: #666;
+  font-size: 1.1rem;
+  margin-top: 2rem;
+}
+
+/* Filter dropdown style */
+.todo-container > form[action="/filter"] {
+  margin-bottom: 1.5rem;
+  text-align: right;
+}
+
+.todo-container > form[action="/filter"] select {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border-radius: 6px;
+  border: 2px solid #ddd;
+  cursor: pointer;
+  transition: border-color 0.3s ease;
+}
+
+.todo-container > form[action="/filter"] select:hover,
+.todo-container > form[action="/filter"] select:focus {
+  border-color: #3498db;
+  outline: none;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .todo-form,
+  .edit-form {
+    flex-direction: column;
+  }
+  
+  .todo-form input[type="text"],
+  .todo-form select,
+  .todo-form button,
+  .edit-form input[type="text"],
+  .edit-form select,
+  .edit-form button,
+  .todo-list form[action="/delete"] button {
+    flex: 1 1 100%;
+    width: 100%;
+  }
+  
+  .todo-list li {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .todo-list form[action="/delete"] {
+    justify-content: flex-start;
+  }
+}
