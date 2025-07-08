@@ -22,6 +22,7 @@ A simple yet functional todo list application built with **Express.js** and **EJ
 
 ## 📁 Project Structure
 
+```
 Todo-App-using-express/
 ├── views/
 │ ├── index.ejs
@@ -30,7 +31,7 @@ Todo-App-using-express/
 ├── index.js
 ├── package.json
 └── README.md
-
+```
 
 ---
 
